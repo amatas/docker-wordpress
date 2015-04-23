@@ -16,4 +16,5 @@ install:
 
 script:
   - sudo chmod +x `pwd`/.travis.sh
+  - cat Dockerfile.template | envsubst > Dockerfile
   - sudo sekexe/run `pwd`/.travis.sh

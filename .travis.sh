@@ -23,7 +23,7 @@ docker run -d --name db \
 -e MYSQL_PASSWORD=pw \
 mysql
 
-make image
+sudo docker build -t inclusivedesign/wordpress .
 
 docker run -i -t --name=wordpress \
 -e DB_SERVICE_ADDRESS=db \
