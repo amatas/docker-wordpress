@@ -20,6 +20,8 @@ docker run -i -t \
 -e MYSQL_PASSWORD=pw \
 --name db mysql
 
+make image
+
 docker run -i -t --name=wordpress \
 -e DB_SERVICE_ADDRESS=db \
 -e APP_DB_NAME=testdb \
@@ -31,5 +33,5 @@ docker run -i -t --name=wordpress \
 -e APP_TEST_STRING="Powered by WordPress, state-of-the-art semantic personal publishing platform." \
 -e APP_FQDN=wordpress.test \
 --link db:db \
-test/wordpress \
+inclusivedesign/wordpress \
 ansible-playbook /srv/ansible/container.yml --tags "start,test"
