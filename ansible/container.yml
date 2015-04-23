@@ -1,0 +1,24 @@
+---
+- hosts: localhost
+  user: root
+
+  vars:
+    wordpress_db_name: "{{ lookup ( 'ENV', 'APP_DB_NAME' ) }}"
+    wordpress_db_username: "{{ lookup ( 'ENV', 'APP_DB_USERNAME' ) }}"
+    wordpress_db_password: "{{ lookup ( 'ENV', 'APP_DB_PASSWORD' ) }}"
+    wordpress_db_host: "{{ lookup ( 'ENV', 'DB_SERVICE_ADDRESS' ) }}"
+    wordpress_tcp_port: "{{ lookup ( 'ENV', 'APP_TCP_PORT' ) }}"
+    wordpress_test_http_endpoint: "{{ lookup ( 'ENV', 'APP_TEST_HTTP_ENDPOINT' ) }}"
+    wordpress_test_http_status_code: "{{ lookup ( 'ENV', 'APP_TEST_HTTP_STATUS_CODE' ) }}"
+    wordpress_test_string: "{{ lookup ( 'ENV', 'APP_TEST_STRING' ) }}"
+    wordpress_version: "{{ lookup ( 'ENV', 'APP_VERSION' ) }}"
+    wordpress_plugins: []
+    wordpress_themes: []
+    wordpress_adm_user: "{{ lookup ( 'ENV', 'APP_ADM_USER' ) }}"
+    wordpress_adm_mail: "{{ lookup ( 'ENV', 'APP_ADM_MAIL' ) }}"
+    wordpress_adm_pass: "{{ lookup ( 'ENV', 'APP_ADM_PASSWORD' ) }}"
+    wordpress_name: "{{ lookup ( 'ENV', 'APP_NAME' ) }}"
+    wordpress_fqdn: "{{ lookup ( 'ENV', 'APP_FQDN' ) }}"
+
+  roles:
+    - role: docker-wordpress

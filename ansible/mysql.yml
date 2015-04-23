@@ -1,0 +1,24 @@
+---
+- hosts: localhost
+  user: vagrant
+  sudo: yes
+  sudo_user: root
+
+  vars:
+    mysql_databases: 
+      - name: wp
+
+    mysql_users:
+      - name: wpuser
+        password: wppassword
+        host: "%"
+        priv: "wp.*:ALL"
+    mysql_daemon: mariadb
+    mysql_log_error: /var/lib/mysql/mysql.log
+    mysql_packages:
+      - php-mysql
+      - mariadb-server
+      - MySQL-python
+
+  roles:
+    - { role: bennojoy.mysql, root_db_pass: 9d617b7 }

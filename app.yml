@@ -1,0 +1,32 @@
+---
+# Lowercase and separated using dashes
+APP_NAME: wordpress
+
+# Application's version, also used to apply a Docker tag
+APP_VERSION: 4.1.2
+
+# Exposed port that the application wants to use to serve requests
+APP_TCP_PORT: 8081
+
+# Application's image name, also used to specify the Docker repository's name
+APP_DOCKER_IMAGE: inclusivedesign/wordpress
+
+# Application's base image
+APP_DOCKER_BASE_IMAGE: inclusivedesign/php
+
+# HTTP endpoint that should be reached to confirm the application is working
+APP_TEST_HTTP_ENDPOINT: /
+
+# HTTP status code that should be returned to confirm the application is working
+APP_TEST_HTTP_STATUS_CODE: 200
+
+# String that should be located within the HTML <body> element 
+APP_TEST_STRING: Powered by WordPress, state-of-the-art semantic personal publishing platform.
+
+APP_DB_NAME : wp
+
+APP_DB_USERNAME : wpuser
+
+APP_DB_PASSWORD : wppassword
+
+DB_SERVICE_ADDRESS: 10.0.2.15

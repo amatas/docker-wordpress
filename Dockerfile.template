@@ -1,0 +1,27 @@
+FROM ${APP_DOCKER_BASE_IMAGE}
+
+RUN yum -y install ansible && \
+    yum clean all && \
+    echo '[local]' > /etc/ansible/hosts && \
+    echo 'localhost' >> /etc/ansible/hosts && \
+    echo '[defaults]' > ~/.ansible.cfg && \
+    echo 'transport = local' >> ~/.ansible.cfg
+
+COPY ansible /srv/ansible/
+
+WORKDIR /srv/ansible
+
+ENV APP_VERSION ${APP_VERSION}
+
+# https://coderwall.com/p/d5zqla/unbuffered-output-with-ansible-in-jenkins
+ENV PYTHONUNBUFFERED 1
+
+#RUN yum -y install git && \
+#    ansible-galaxy install --force -r requirements.yml && \
+#    yum -y autoremove git && \
+RUN ansible-playbook container.yml --tags "build" && \
+    yum clean all 
+
+EXPOSE ${APP_TCP_PORT}
+
+CMD ["supervisord -c /etc/supervisord.conf"]

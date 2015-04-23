@@ -1,0 +1,28 @@
+---
+
+- name: Ensure Supervisord will start WordPress as a background process
+  lineinfile:
+    dest: /etc/supervisord.conf
+    regexp: ^nodaemon=true
+    state: absent
+
+- name: Start Supervisord and WordPress
+  shell: supervisord -c /etc/supervisord.conf
+
+- name: Pause for 5 minutes to give WordPress time to finish initializing
+  pause:
+    minutes: 1
+
+- name: Test a WordPress endpoint and check the result for the presence of a requested string
+  uri:
+    url: "http://127.0.0.1{{ wordpress_test_http_endpoint }}"
+    status_code: "{{ wordpress_test_http_status_code }}"
+    follow_redirects: all
+    return_content: yes
+    timeout: 60
+  register: webpage
+
+- name: Fail if requested string is not found
+  fail:
+    msg: 'WordPress is not configured properly'
+  when: "'{{ wordpress_test_string }}' not in webpage.content"
