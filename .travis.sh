@@ -16,12 +16,12 @@ sleep 2
 chmod +rw /var/run/docker.sock 
 
 cd $DIR
-docker run -i -t \
+docker run -d --name db \
 -e MYSQL_ROOT_PASSWORD=root \
 -e MYSQL_DATABASE=testdb \
 -e MYSQL_USER=user \
 -e MYSQL_PASSWORD=pw \
---name db mysql
+mysql
 
 make image
 
