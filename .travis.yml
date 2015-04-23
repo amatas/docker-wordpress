@@ -3,9 +3,7 @@ python:
   - "2.7"
 
 env:
-  - APP_DOCKER_BASE_IMAGE=inclusivedesign/php
-  - APP_VERSION=4.1.2
-  - APP_TCP_PORT=80
+  - APP_DOCKER_BASE_IMAGE=inclusivedesign/php APP_VERSION=4.1.2 APP_TCP_PORT=80
 
 install:
   - sudo sh -c "wget -qO- https://get.docker.io/gpg | apt-key add -"
