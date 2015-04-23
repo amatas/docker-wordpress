@@ -12,7 +12,7 @@ docker -d &
 sleep 2 
 chmod +rw /var/run/docker.sock 
 
-cd $DIR && npm test
+cd $DIR
 docker run -i -t \
 -e MYSQL_ROOT_PASSWORD=root \
 -e MYSQL_DATABASE=testdb \
