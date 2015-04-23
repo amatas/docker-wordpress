@@ -38,3 +38,5 @@ docker run -i -t --name=wordpress \
 --link db:db \
 inclusivedesign/wordpress \
 ansible-playbook /srv/ansible/container.yml --tags "start,test"
+
+exit $?

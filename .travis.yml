@@ -11,6 +11,7 @@ install:
   - sudo apt-get install -qy slirp lxc lxc-docker cgroup-lite
   - sudo apt-get install -qy python-software-properties python make
   - sudo pip install ansible
+  - sudo pip install shyaml
   - git clone git://github.com/jpetazzo/sekexe 
 
 script:
