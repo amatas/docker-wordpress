@@ -8,7 +8,7 @@ install:
   - sudo apt-get update
   - echo exit 101 | sudo tee /usr/sbin/policy-rc.d
   - sudo chmod +x /usr/sbin/policy-rc.d
-  - sudo apt-get install -qy slirp lxc lxc-docker 
+  - sudo apt-get install -qy slirp lxc lxc-docker cgroup-lite
   - sudo apt-get install -qy python-software-properties python make
   - sudo pip install ansible
   - git clone git://github.com/jpetazzo/sekexe 

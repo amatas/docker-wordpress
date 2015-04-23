@@ -8,6 +8,9 @@ trap 'kill $(jobs -p)' SIGINT SIGTERM EXIT
 export TRAVIS=1
 export DOCKER_HOST="unix:///var/run/docker.sock"
 
+cgroups-umount
+cgroups-mount
+
 docker -d &
 sleep 2 
 chmod +rw /var/run/docker.sock 
