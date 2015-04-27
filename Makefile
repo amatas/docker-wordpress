@@ -30,6 +30,7 @@ debug:
 
 	sudo -E docker run -i -t --name="$(APP_NAME)" \
 	-e DB_SERVICE_ADDRESS=$(DB_SERVICE_ADDRESS) \
+	-e APP_NAME=$(APP_NAME) \
 	-e APP_DB_NAME=$(APP_DB_NAME) \
 	-e APP_DB_USERNAME=$(APP_DB_USERNAME) \
 	-e APP_DB_PASSWORD=$(APP_DB_PASSWORD) \
@@ -64,14 +65,17 @@ test:
 
 	sudo -E docker run -i -t --name="$(APP_NAME)" \
 	-e DB_SERVICE_ADDRESS=$(DB_SERVICE_ADDRESS) \
+	-e APP_NAME=$(APP_NAME) \
 	-e APP_DB_NAME=$(APP_DB_NAME) \
 	-e APP_DB_USERNAME=$(APP_DB_USERNAME) \
 	-e APP_DB_PASSWORD=$(APP_DB_PASSWORD) \
 	-e APP_TCP_PORT=$(APP_TCP_PORT) \
+	-e APP_ADM_MAIL=user@mail.test \
+	-e APP_ADM_USER=wpadmin \
+	-e APP_ADM_PASSWORD=wppass \
 	-e APP_TEST_HTTP_ENDPOINT=$(APP_TEST_HTTP_ENDPOINT) \
 	-e APP_TEST_HTTP_STATUS_CODE=$(APP_TEST_HTTP_STATUS_CODE) \
 	-e APP_TEST_STRING="$(APP_TEST_STRING)" \
 	-e APP_FQDN=wordpress.test \
 	$(APP_DOCKER_IMAGE) \
 	ansible-playbook /srv/ansible/container.yml --tags "start,test"
-

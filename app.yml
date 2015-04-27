@@ -3,7 +3,7 @@
 APP_NAME: wordpress
 
 # Application's version, also used to apply a Docker tag
-APP_VERSION: 4.1.2
+APP_VERSION: 4.2
 
 # Exposed port that the application wants to use to serve requests
 APP_TCP_PORT: 8081
@@ -23,10 +23,14 @@ APP_TEST_HTTP_STATUS_CODE: 200
 # String that should be located within the HTML <body> element 
 APP_TEST_STRING: Powered by WordPress, state-of-the-art semantic personal publishing platform.
 
+# Name of the database that will contain the WordPress data
 APP_DB_NAME : wp
 
+# Username to use in the database connection
 APP_DB_USERNAME : wpuser
 
+# Password that the above user must use
 APP_DB_PASSWORD : wppassword
 
+# IP address where the database will be listening
 DB_SERVICE_ADDRESS: 10.0.2.15

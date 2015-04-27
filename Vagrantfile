@@ -6,7 +6,6 @@ CPUS = ENV["VM_CPUS"]
 
 Vagrant.configure(2) do |config|
 
-  #config.vm.box = "chef/centos-7.0"
   config.vm.box = "amatas/centos-7"
 
   config.vm.provider :virtualbox do |v|
@@ -16,7 +15,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.network "forwarded_port", guest: 8081, host: 8081
  
-  config.vm.synced_folder ".", "/app"
+  config.vm.synced_folder ".", "/srv"
 
   config.vm.provision "shell", inline: <<-SHELL
     sudo systemctl disable firewalld
@@ -30,6 +29,8 @@ Vagrant.configure(2) do |config|
     sudo sh -c "echo 'localhost' >> /etc/ansible/hosts"
     sudo sh -c "echo '[defaults]' > ~/.ansible.cfg"
     sudo sh -c "echo 'transport = local' >> ~/.ansible.cfg"
+    sudo git clone https://github.com/amatas/ansible-role-mysql.git /etc/ansible/roles/mysql
+    sudo ansible-playbook /srv/ansible/mysql.yml
   SHELL
 
 end

@@ -21,4 +21,4 @@
     wordpress_fqdn: "{{ lookup ( 'ENV', 'APP_FQDN' ) }}"
 
   roles:
-    - role: docker-wordpress
+    - role: wordpress

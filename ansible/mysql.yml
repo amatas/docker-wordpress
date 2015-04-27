@@ -21,4 +21,4 @@
       - MySQL-python
 
   roles:
-    - { role: bennojoy.mysql, root_db_pass: 9d617b7 }
+    - { role: mysql, root_db_pass: 9d617b7 }
